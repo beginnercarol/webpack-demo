@@ -2,7 +2,7 @@ import './index.css';
 import _ from 'lodash';
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
-
+import GeoMap from './components/pro-map';
 
 class App extends Component {
     constructor(props){
@@ -14,7 +14,7 @@ class App extends Component {
     render(){
         return (
             <div>
-                6666
+                <GeoMap />
                 {[...this.state.nodeList]}
             </div>
         )

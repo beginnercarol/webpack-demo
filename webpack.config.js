@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HappyPack = require('happypack');
 const Autoprefixer = require('autoprefixer')();
 module.exports = {
     entry:{
@@ -14,7 +15,20 @@ module.exports = {
         path:path.resolve(__dirname,'src/dist')
     },
     module:{
-        rules:[{
+        rules:[
+            {
+                test: /\.tsx?$|\.ts?$/,
+                include:path.join(__dirname,'/src'),
+                use: 'ts-loader',
+            }, {
+                test: /\.js$/,
+                include:path.join(__dirname,'/src'),
+                use: [{
+                    loader: 'happypack/loader'
+                }]
+            }, 
+            
+        {
             test:/\.(js|jsx)$/,
             include:path.join(__dirname,'/src'),
             use:{
@@ -65,6 +79,26 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.join(__dirname, './server/views/index.template.html'),
+        }),
+        new HappyPack({
+            loaders: [{
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        [
+                            "env",
+                            {
+                                "modules": false
+                            }
+                        ],
+                        "stage-0",
+                        "react"
+                    ],
+                   
+                    cacheDirectory: true,
+                }
+            }],
+            threads: 4
         }),
         
     ]
