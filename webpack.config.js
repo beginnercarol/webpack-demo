@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HappyPack = require('happypack');
 const Autoprefixer = require('autoprefixer')();
 module.exports = {
+    mode: 'development',
     entry:{
         app:'./src/index.js'
     },

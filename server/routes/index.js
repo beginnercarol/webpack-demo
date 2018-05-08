@@ -3,14 +3,14 @@ const Item = require('../mongodb/schema');
 
 module.exports = function (router) {
     router.get('/getAllItem',async (ctx,next) => {
-        ctx.response.body = await Item.find({}).exec((err,json)=>{
-            if(err){
-                console.log("err=>",err);
-            }else{
-                console.log("get json=>",json);
-                return Promise.resolve(json);
-            }
-        })
+        let data ;
+        try{
+            data = await Item.find({})
+        }catch(err){
+            ctx.body = {message: err.message}
+            ctx.state = err.code || 500
+        }
+        ctx.response.body = data;
         next();
     })
     router.get('/index',(ctx,next)=>{
@@ -19,22 +19,17 @@ module.exports = function (router) {
         }
         next();
     })
-    router.post('/addItem',(ctx,next) => {
+    router.post('/addItem',async (ctx,next) => {
         let newItem = ctx.request.body;
-
-        Item.create(newItem,(err)=>{
-            if(err){
-                console.log('err');
-            }else{
-                Item.find({},(err,todoList)=>{
-                    if(err){
-                        conosle.log(err);
-                    }else{
-                        ctx.response.body = todoList
-                        next()
-                    }
-                })
-            }
-        })
+        let data ;
+        try{
+            // Item.create(newItem);
+            data = await Item.create(newItem);
+        }catch(err){
+            ctx.body = {message: err.message}
+            ctx.state = err.code || 500
+        }
+        ctx.response.body = data;
+        next();
     })
 }

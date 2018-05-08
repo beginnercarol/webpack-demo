@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import autoBind from 'react-autobind';
+
 export default class GeoMap extends Component {
     constructor(props){
         super(props);
