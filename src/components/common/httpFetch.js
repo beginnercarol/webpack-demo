@@ -21,7 +21,7 @@ export function httpFetch (config, temType){
             'Content-Type': 'application/json'
         }
         if(config.param){
-            fetchConfig.body = qs.stringify(config.param)
+            fetchConfig.body = JSON.stringify(config.param)
         }
     }
 

@@ -7,7 +7,10 @@ import ContentRouter from './content-router';
 import ContentChild from './content-router/child';
 import NavigatorPanel from './navigator';
 import Todo from './todo';
-
+import Mob from './mob';
+import MobApp from './mob-app';
+import Debounce from './debounce';
+import ChangeState from './state';
 class Home extends Component {
     constructor(props){
         super(props);
@@ -17,7 +20,7 @@ class Home extends Component {
     initBaseFrame(Content){
         return (
             <div className="main-body">
-                <NavigatorPanel {...this.props} />
+                {/* <NavigatorPanel {...this.props} /> */}
                 <Content {...this.props}/>
             </div>
         )
@@ -28,12 +31,15 @@ class Home extends Component {
         console.log("home props=>",this.props);
         return (
             <div className="container">
-
             <Switch>
                 <Route exact path="/" render={() => <GeoMap/>} />
                 <Route path='/map' render={() => this.initBaseFrame(GeoMap)}/>
                 <Route path='/content' render={() => this.initBaseFrame(ContentRouter)} />
                 <Route path='/todolist' render={() => this.initBaseFrame(Todo)}/>
+                <Route path='/mob' render={() => this.initBaseFrame(Mob)}/>
+                <Route path='/mob-app' render={() => this.initBaseFrame(MobApp)}/>
+                <Route path='/debounce' render={() => this.initBaseFrame(Debounce)}/>
+                <Route path='/cst' render={() => this.initBaseFrame(ChangeState)}/>
             </Switch>
             </div>
         )

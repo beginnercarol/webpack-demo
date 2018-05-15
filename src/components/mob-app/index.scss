@@ -1,0 +1,37 @@
+$height: 0.44rem;
+
+@mixin header-footer{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    height: $height;
+    background-color: aquamarine;        
+}
+
+* {
+    box-sizing: border-box;
+}
+.mob-app{
+    position: relative;
+    height: 13.34rem;
+    .header,.footer{
+        @include header-footer;
+    }
+    .header{
+        top:0;
+    }
+    .footer{
+        bottom: 0;
+    }
+    .main{
+        height: 100%;
+        padding: 0.44rem 0;
+        .main-wrapper{
+            overflow: scroll;
+            width: 2rem;
+            height: 2rem;
+            background-color: red;
+            color: red;
+        }
+    }
+}

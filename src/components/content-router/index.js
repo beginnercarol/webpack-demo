@@ -21,4 +21,4 @@ export class ContentRouter extends Component {
     }
 }
 
-export default ContentRouter
+export default ContentRouter;

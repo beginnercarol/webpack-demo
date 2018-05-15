@@ -1,0 +1,32 @@
+@media screen and (max-width: 300px) {
+    
+}
+$height: 44px;
+
+@mixin header-footer{
+    display: absolute;
+    left: 0;
+    height: $height;
+    background-color: aquamarine;        
+}
+
+.mob{
+    header,footer{
+        @include header-footer;
+    }
+    header{
+        top:0;
+    }
+    footer{
+        bottom: 0;
+    }
+    main{
+        height: 100%;
+        .main-wrapper{
+            overflow: scroll;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    }
+}

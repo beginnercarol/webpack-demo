@@ -1,4 +1,94 @@
+@keyframes show-border{
+
+}
 .todo-panel{
+    position: relative;
     width:80%;
     margin: 0 auto;
+    padding:10px;
+    color:#000;
+    font-size:20px;
+    background: url('../../assets/imgs/brooke.jpg') no-repeat center/cover;
+    border-radius: 5px;
+    height:600px;
+    .todo-nav{
+        svg.icon{
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            &:last-of-type{
+                float: right;
+            }
+
+        }
+
+    }
+    .todo-side{
+        box-sizing: border-box;
+        overflow:hidden;
+        width: 0;
+        height: 100%;
+        position: absolute;
+        left: -10px;
+        top: 0;
+        z-index: 10;
+        border-radius: 10px;
+        background-color: azure;
+        transition: width 3s;
+    }
+    .todo-side-visible{
+        width: 70%;
+        transition: width 3s;
+    }
+
+    .todo-input{
+        height:100px;
+        line-height: 100px;
+    }
+    .todo-main{
+        position: relative;
+        z-index: 2;
+    }
+    .todo-items{
+        border-radius: 5px;
+        
+        .child-item{
+            background-color: #FFF;
+            width:80%;
+            min-width: 275px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin: 10px auto;
+            height: 60px;
+            line-height: 60px;
+            padding: 0 10px;
+            overflow: hidden;
+            span{
+                margin-left:5px;
+                color:#999;
+                font-size:16px;
+            }
+            span.svg-wrapper{
+                width: 25px;
+                height: 25px;
+                float: left;
+                svg.icon{
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+            span:last-of-type{
+                float: right;
+            }
+            &:hover{
+                transform: translateY(-3px);
+                box-shadow: 0 3px 3px #999;
+            }
+        }
+        .child-completed{
+            text-decoration: line-through;
+            color: #999;
+        } 
+    }
 }

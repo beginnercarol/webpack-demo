@@ -4,6 +4,7 @@ const koa = require('koa');
 const logger = require('koa-logger');
 const Router = require('koa-router');
 const json = require('koa-json');
+// const ejs = require('ejs');
 const render = require('koa-views');
 const serve = require('koa-static');
 const cors = require('kcors');
@@ -39,9 +40,12 @@ app.use(webpackDevMiddleware(compiler,{
 }))
 
 // serve files
-app.use(serve(path.join(__dirname, '../')));
-app.use(render(path.join(__dirname, "../")));
-
+app.use(serve(path.resolve(__dirname, '../')));
+app.use(render(path.resolve(__dirname, "../")));
+app.use(render(path.join(__dirname, '/views/templates'), {
+    extension: 'ejs',
+    map : {html:'ejs'}
+  }))
 routerConfig(router);
 
 app.use(router.routes());
